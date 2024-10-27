@@ -77,29 +77,21 @@
 
 
     <main class="relative min-h-screen flex px-8 flex-col justify-center bg-slate-900 overflow-hidden">
-        <!-- Conditional Message Display -->
-        {% if message %}
-            <div class="p-4 absolute top-4 left-1/2 transform -translate-x-1/2 text-sm text-green-800 bg-green-100 rounded-lg shadow-lg w-3/4 max-w-xl text-center" role="alert">
-                {{ message }}
-            </div>
-        {% elif error %}
-            <div class="p-4 absolute top-4 left-1/2 transform -translate-x-1/2 text-sm text-red-800 bg-red-100 rounded-lg shadow-lg w-3/4 max-w-xl text-center" role="alert">
-                {{ error }}
-            </div>
-        {% endif %}
 
         <div class="w-full max-w-5xl mx-auto px-4 md:px-6 py-24">
             <div class="text-center space-y-10">
 
                 <!-- Animated gradient -->
-                <p class="text-5xl md:text-6xl lg:text-6xl font-bold bg-clip-text text-transparent bg-[linear-gradient(to_right,theme(colors.green.900),theme(colors.green.800),theme(colors.blue.500),theme(colors.green.900),theme(colors.sky.400),theme(colors.indigo.100),theme(colors.blue.500))] bg-[length:200%_auto] animate-gradient uppercase">Sem;colon Youtube</p>
+                <p class="text-5xl md:text-6xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text animate-gradient uppercase">
+                    Sem;colon Youtube Downloader
+                </p>
                 <p class="text-md md:text-2xl lg:text-2xl text-slate-100">Enjoy videos in stunning HD quality. Our downloader supports various formats, ensuring you get the best video experience every time.</p>
 
                 <!-- Search bar -->
-                <form id="downloadForm" method="POST" action="{% url 'YoutubeVideoDownloaderApp:url_to_video_download' %}" class="w-full max-w-2xl mx-auto">
+                <form id="downloadForm" action="{% url 'YoutubeVideoDownloaderApp:url_to_video_download' %}" method="POST" enctype="multipart/form-data" class="w-full max-w-2xl mx-auto">
                     {% csrf_token %}
                     <div class="relative">
-                        <input type="text" name="video_url" placeholder="Type URL to download" autocomplete="off" class="w-full focus:outline-none focus:bg-gray-800 transition-all duration-300 rounded-full py-5 px-10 block w-full p-3 bg-gray-700 placeholder-gray-400 text-white">
+                        <input type="text" name="video_url" placeholder="Type URL to download" autocomplete="off" class="w-full focus:outline-none focus:bg-gray-700 transition-all duration-300 rounded-full py-5 px-10 block w-full p-3 bg-gray-800 placeholder-gray-400 text-white">
                         <button type="submit" class="absolute inset-y-0 bg-blue-500 text-slate-100 hover:bg-blue-600 transition-all duration-300 rounded-full flex items-center justify-center cursor-pointer w-24 h-12 right-4 top-1/2 -translate-y-1/2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
@@ -138,18 +130,20 @@
                         peer-checked/04:opacity-0
                         peer-checked/05:-translate-x-40
                     ">
-                        <label class="absolute inset-0" for="article-01"><span class="sr-only">Focus on the big picture</span></label>
+                        <label class="absolute inset-0" for="article-01">
+                            <span class="sr-only">High-Quality Downloads</span>
+                        </label>
                         <article class="bg-slate-800 p-6 rounded-lg shadow-2xl">
                             <header class="mb-2">
                                 <img class="inline-flex rounded-full shadow mb-3" src="https://avatars.githubusercontent.com/u/116074810?v=4" width="44" height="44" alt="Icon">
-                                <h1 class="text-xl font-bold text-slate-300">Focus on the big picture</h1>
+                                <h1 class="text-xl font-bold text-slate-300">High-Quality Downloads</h1>
                             </header>
                             <div class="text-sm leading-relaxed text-slate-500 space-y-4 mb-2">
                                 <p>
-                                    Many desktop publishing packages and web page editors now use Pinky as their default model text, and a search for more variants will uncover many web sites still in their infancy.
+                                    Enjoy videos in stunning HD quality. Our downloader supports various formats, ensuring you get the best video experience every time.
                                 </p>
                                 <p>
-                                    All the generators tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                                    You can also download videos in multiple qualities, including 480p, 720p, 1080p, and 4K. For now, we are focusing on 1080p only.
                                 </p>
                             </div>
                             <footer class="text-right">
@@ -178,18 +172,20 @@
                         peer-checked/05:-translate-x-40
                         peer-checked/05:opacity-0
                     ">
-                        <label class="absolute inset-0" for="article-02"><span class="sr-only">Focus on the big picture</span></label>
+                        <label class="absolute inset-0" for="article-02">
+                            <span class="sr-only">Convert to Audio (Future Feature)</span>
+                        </label>
                         <article class="bg-slate-800 p-6 rounded-lg shadow-2xl">
                             <header class="mb-2">
                                 <img class="inline-flex rounded-full shadow mb-3" src="https://avatars.githubusercontent.com/u/116074810?v=4" width="44" height="44" alt="Icon">
-                                <h1 class="text-xl font-bold text-slate-300">Focus on the big picture</h1>
+                                <h1 class="text-xl font-bold text-slate-300">Convert to Audio (Future Feature)</h1>
                             </header>
                             <div class="text-sm leading-relaxed text-slate-500 space-y-4 mb-2">
                                 <p>
-                                    Many desktop publishing packages and web page editors now use Pinky as their default model text, and a search for more variants will uncover many web sites still in their infancy.
+                                    Transform your favorite videos into audio files. Perfect for creating playlists or enjoying content on the go without video distractions.
                                 </p>
                                 <p>
-                                    All the generators tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                                    Only our website providing this feature is currently available. We are working on it.
                                 </p>
                             </div>
                             <footer class="text-right">
@@ -218,18 +214,20 @@
                         peer-checked/05:-translate-x-40
                         peer-checked/05:z-30
                     ">
-                        <label class="absolute inset-0" for="article-03"><span class="sr-only">Focus on the big picture</span></label>
+                        <label class="absolute inset-0" for="article-03">
+                            <span class="sr-only">Fast and Secure</span>
+                        </label>
                         <article class="bg-slate-800 p-6 rounded-lg shadow-2xl">
                             <header class="mb-2">
                                 <img class="inline-flex rounded-full shadow mb-3" src="https://avatars.githubusercontent.com/u/116074810?v=4" width="44" height="44" alt="Icon">
-                                <h1 class="text-xl font-bold text-slate-300">Focus on the big picture</h1>
+                                <h1 class="text-xl font-bold text-slate-300">Fast and Secure</h1>
                             </header>
                             <div class="text-sm leading-relaxed text-slate-500 space-y-4 mb-2">
                                 <p>
-                                    Many desktop publishing packages and web page editors now use Pinky as their default model text, and a search for more variants will uncover many web sites still in their infancy.
+                                    Our website is designed to be fast and secure. Download videos in a matter of seconds. Our downloader is optimized for speed and security.
                                 </p>
                                 <p>
-                                    All the generators tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                                    Our downloader is optimized for speed and security. Download videos quickly without worrying about malware or data privacy.
                                 </p>
                             </div>
                             <footer class="text-right">
@@ -263,18 +261,20 @@
                         peer-checked/05:scale-[83.75%]
                         peer-checked/05:z-40
                     ">
-                        <label class="absolute inset-0" for="article-04"><span class="sr-only">Focus on the big picture</span></label>
+                        <label class="absolute inset-0" for="article-04">
+                            <span class="sr-only">User-Friendly Interface</span>
+                        </label>
                         <article class="bg-slate-800 p-6 rounded-lg shadow-2xl">
                             <header class="mb-2">
                                 <img class="inline-flex rounded-full shadow mb-3" src="https://avatars.githubusercontent.com/u/116074810?v=4" width="44" height="44" alt="Icon">
-                                <h1 class="text-xl font-bold text-slate-300">Focus on the big picture</h1>
+                                <h1 class="text-xl font-bold text-slate-300">User-Friendly Interface</h1>
                             </header>
                             <div class="text-sm leading-relaxed text-slate-500 space-y-4 mb-2">
                                 <p>
-                                    Many desktop publishing packages and web page editors now use Pinky as their default model text, and a search for more variants will uncover many web sites still in their infancy.
+                                    Designed with simplicity in mind, sem;colon YouTube Downloader offers an intuitive interface that makes downloading videos a breeze, even for beginners.
                                 </p>
                                 <p>
-                                    All the generators tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                                    Our website is user-friendly and easy to use. You can easily download videos from any website.
                                 </p>
                             </div>
                             <footer class="text-right">
@@ -301,7 +301,9 @@
                         peer-checked/05:scale-100
                         peer-checked/05:[&amp;>label]:pointer-events-none
                     ">
-                        <label class="absolute inset-0" for="article-05"><span class="sr-only">Focus on the big picture</span></label>
+                        <label class="absolute inset-0" for="article-05">
+                            <span class="sr-only">Focus on the big picture</span>
+                        </label>
                         <article class="bg-slate-800 p-6 rounded-lg shadow-2xl">
                             <header class="mb-2">
                                 <img class="inline-flex rounded-full shadow mb-3" src="https://avatars.githubusercontent.com/u/116074810?v=4" width="44" height="44" alt="Icon">
@@ -337,25 +339,32 @@
 
 {% block scripts %}
 <script>
-        document.getElementById('downloadForm').onsubmit = function(event) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const downloadForm = document.getElementById('downloadForm');
+
+        downloadForm.addEventListener('submit', function(event) {
             event.preventDefault();  // Prevent the default form submission
             const loader = document.getElementById('loader');
-
             loader.classList.remove('hidden');
 
             const formData = new FormData(this);
+
+            // Get CSRF token from cookies
+            const csrftoken = document.cookie.split('; ').find(row => row.startsWith('csrftoken=')).split('=')[1];
 
             fetch(this.action, {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'X-Requested-With': 'XMLHttpRequest'  // Indicate an AJAX request
+                    'X-Requested-With': 'XMLHttpRequest',  // Indicate an AJAX request
+                    'X-CSRFToken': csrftoken  // Include CSRF token
                 }
             })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
+
                 // Create a link to download the file
                 const disposition = response.headers.get('Content-Disposition');
                 const filename = disposition ? disposition.split('filename=')[1].replace(/"/g, '') : 'downloaded_video.mp4';
@@ -374,9 +383,7 @@
             })
             .then(filename => {
                 loader.classList.add('hidden');  // Hide the loader after download starts
-
-                // input value is cleared after download
-                document.getElementById('downloadForm').reset();
+                downloadForm.reset();  // Clear input value
 
                 // Show a success message
                 const successMessage = document.createElement('div');
@@ -397,15 +404,18 @@
                 // Show an error message
                 const errorMessage = document.createElement('div');
                 errorMessage.className = 'p-4 absolute top-4 left-1/2 transform -translate-x-1/2 text-sm text-slate-100 bg-red-500 rounded-lg shadow-lg w-3/4 max-w-xl text-center';
-                errorMessage.textContent = 'Error downloading video' + error;
+                errorMessage.textContent = 'Error downloading video: ' + error.message;
                 document.body.appendChild(errorMessage);
 
                 // Hide the error message after 5 seconds
                 setTimeout(() => {
                     errorMessage.remove();
                 }, 5000);
-
             });
-        };
-    </script>
+        });
+    });
+</script>
 {% endblock %}
+
+
+
