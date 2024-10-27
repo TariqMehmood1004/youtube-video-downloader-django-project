@@ -76,7 +76,7 @@
 
 
 
-    <main class="relative min-h-screen flex flex-col justify-center bg-slate-900 overflow-hidden">
+    <main class="relative min-h-screen flex px-8 flex-col justify-center bg-slate-900 overflow-hidden">
         <!-- Conditional Message Display -->
         {% if message %}
             <div class="p-4 absolute top-4 left-1/2 transform -translate-x-1/2 text-sm text-green-800 bg-green-100 rounded-lg shadow-lg w-3/4 max-w-xl text-center" role="alert">
@@ -89,10 +89,11 @@
         {% endif %}
 
         <div class="w-full max-w-5xl mx-auto px-4 md:px-6 py-24">
-            <div class="text-center space-y-20">
+            <div class="text-center space-y-10">
 
                 <!-- Animated gradient -->
-                <p class="text-3xl md:text-6xl lg:text-6xl font-bold bg-clip-text text-transparent bg-[linear-gradient(to_right,theme(colors.green.900),theme(colors.green.800),theme(colors.blue.500),theme(colors.green.900),theme(colors.sky.400),theme(colors.indigo.100),theme(colors.blue.500))] bg-[length:200%_auto] animate-gradient uppercase">Sem;colon Youtube</p>
+                <p class="text-5xl md:text-6xl lg:text-6xl font-bold bg-clip-text text-transparent bg-[linear-gradient(to_right,theme(colors.green.900),theme(colors.green.800),theme(colors.blue.500),theme(colors.green.900),theme(colors.sky.400),theme(colors.indigo.100),theme(colors.blue.500))] bg-[length:200%_auto] animate-gradient uppercase">Sem;colon Youtube</p>
+                <p class="text-md md:text-2xl lg:text-2xl text-slate-100">Enjoy videos in stunning HD quality. Our downloader supports various formats, ensuring you get the best video experience every time.</p>
 
                 <!-- Search bar -->
                 <form id="downloadForm" method="POST" action="{% url 'YoutubeVideoDownloaderApp:url_to_video_download' %}" class="w-full max-w-2xl mx-auto">
@@ -111,7 +112,7 @@
 
         </div>
 
- <div class="max-w-lg mx-auto relative">
+        <div class="max-w-lg mx-auto relative mx-3">
 
                     <input id="article-01" type="radio" name="slider" class="sr-only peer/01">
                     <input id="article-02" type="radio" name="slider" class="sr-only peer/02">
