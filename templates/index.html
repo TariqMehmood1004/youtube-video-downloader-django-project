@@ -1,0 +1,410 @@
+{% extends "_layout.html" %}
+
+{% load static %}
+
+{% block title %} Sem;colon Youtube {% endblock %}
+
+{% block content %}
+
+<!-- component -->
+<!-- This is an example component -->
+<div>
+  <style>
+
+.loader-dots div {
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.loader-dots div:nth-child(1) {
+    left: 8px;
+    animation: loader-dots1 0.6s infinite;
+}
+.loader-dots div:nth-child(2) {
+    left: 8px;
+    animation: loader-dots2 0.6s infinite;
+}
+.loader-dots div:nth-child(3) {
+    left: 32px;
+    animation: loader-dots2 0.6s infinite;
+}
+.loader-dots div:nth-child(4) {
+    left: 56px;
+    animation: loader-dots3 0.6s infinite;
+}
+@keyframes loader-dots1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes loader-dots3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+@keyframes loader-dots2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+</style>
+
+    <div id="loader" class="hidden z-[99999] fixed top-0 left-0 z-50 w-screen inset-0 bg-gray-500 bg-opacity-75 transition-opacity h-screen flex items-center justify-center">
+          <div class="py-2 px-5 rounded-lg flex items-center flex-col">
+                <div class="loader-dots block relative w-20 h-5 mt-2">
+                  <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-green-500"></div>
+                  <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-green-500"></div>
+                  <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-green-500"></div>
+                  <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                <div class="text-slate-100 text-xs font-medium mt-2 text-center">
+                  Downloading...
+                </div>
+              </div>
+          </div>
+    </div>
+
+
+<div class="relative font-inter antialiased" cz-shortcut-listen="true">
+
+
+
+    <main class="relative min-h-screen flex flex-col justify-center bg-slate-900 overflow-hidden">
+        <!-- Conditional Message Display -->
+        {% if message %}
+            <div class="p-4 absolute top-4 left-1/2 transform -translate-x-1/2 text-sm text-green-800 bg-green-100 rounded-lg shadow-lg w-3/4 max-w-xl text-center" role="alert">
+                {{ message }}
+            </div>
+        {% elif error %}
+            <div class="p-4 absolute top-4 left-1/2 transform -translate-x-1/2 text-sm text-red-800 bg-red-100 rounded-lg shadow-lg w-3/4 max-w-xl text-center" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <div class="w-full max-w-5xl mx-auto px-4 md:px-6 py-24">
+            <div class="text-center space-y-20">
+
+                <!-- Animated gradient -->
+                <p class="text-3xl md:text-6xl lg:text-6xl font-bold bg-clip-text text-transparent bg-[linear-gradient(to_right,theme(colors.green.900),theme(colors.green.800),theme(colors.blue.500),theme(colors.green.900),theme(colors.sky.400),theme(colors.indigo.100),theme(colors.blue.500))] bg-[length:200%_auto] animate-gradient uppercase">Sem;colon Youtube</p>
+
+                <!-- Search bar -->
+                <form id="downloadForm" method="POST" action="{% url 'YoutubeVideoDownloaderApp:url_to_video_download' %}" class="w-full max-w-2xl mx-auto">
+                    {% csrf_token %}
+                    <div class="relative">
+                        <input type="text" name="video_url" placeholder="Type URL to download" autocomplete="off" class="w-full focus:outline-none focus:bg-gray-800 transition-all duration-300 rounded-full py-5 px-10 block w-full p-3 bg-gray-700 placeholder-gray-400 text-white">
+                        <button type="submit" class="absolute inset-y-0 bg-blue-500 text-slate-100 hover:bg-blue-600 transition-all duration-300 rounded-full flex items-center justify-center cursor-pointer w-24 h-12 right-4 top-1/2 -translate-y-1/2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                            </svg>
+
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+ <div class="max-w-lg mx-auto relative">
+
+                    <input id="article-01" type="radio" name="slider" class="sr-only peer/01">
+                    <input id="article-02" type="radio" name="slider" class="sr-only peer/02">
+                    <input id="article-03" type="radio" name="slider" class="sr-only peer/03" checked="">
+                    <input id="article-04" type="radio" name="slider" class="sr-only peer/04">
+                    <input id="article-05" type="radio" name="slider" class="sr-only peer/05">
+
+                    <div class="
+                        absolute inset-0 scale-[67.5%] z-20 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
+                        peer-focus-visible/01:[&amp;_article]:ring
+                        peer-focus-visible/01:[&amp;_article]:ring-indigo-300
+                        peer-checked/01:relative
+                        peer-checked/01:z-50
+                        peer-checked/01:translate-x-0
+                        peer-checked/01:scale-100
+                        peer-checked/01:[&amp;>label]:pointer-events-none
+                        peer-checked/02:-translate-x-20
+                        peer-checked/02:scale-[83.75%]
+                        peer-checked/02:z-40
+                        peer-checked/03:-translate-x-40
+                        peer-checked/03:z-30
+                        peer-checked/04:-translate-x-40
+                        peer-checked/04:opacity-0
+                        peer-checked/05:-translate-x-40
+                    ">
+                        <label class="absolute inset-0" for="article-01"><span class="sr-only">Focus on the big picture</span></label>
+                        <article class="bg-slate-800 p-6 rounded-lg shadow-2xl">
+                            <header class="mb-2">
+                                <img class="inline-flex rounded-full shadow mb-3" src="https://avatars.githubusercontent.com/u/116074810?v=4" width="44" height="44" alt="Icon">
+                                <h1 class="text-xl font-bold text-slate-300">Focus on the big picture</h1>
+                            </header>
+                            <div class="text-sm leading-relaxed text-slate-500 space-y-4 mb-2">
+                                <p>
+                                    Many desktop publishing packages and web page editors now use Pinky as their default model text, and a search for more variants will uncover many web sites still in their infancy.
+                                </p>
+                                <p>
+                                    All the generators tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                                </p>
+                            </div>
+                            <footer class="text-right">
+                                <a class="text-sm font-medium text-indigo-500 hover:underline" href="#0">Read more -&gt;</a>
+                            </footer>
+                        </article>
+                    </div>
+
+                    <div class="
+                        absolute inset-0 scale-[67.5%] z-20 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
+                        peer-focus-visible/02:[&amp;_article]:ring
+                        peer-focus-visible/02:[&amp;_article]:ring-indigo-300
+                        peer-checked/01:translate-x-20
+                        peer-checked/01:scale-[83.75%]
+                        peer-checked/01:z-40
+                        peer-checked/02:relative
+                        peer-checked/02:z-50
+                        peer-checked/02:translate-x-0
+                        peer-checked/02:scale-100
+                        peer-checked/02:[&amp;>label]:pointer-events-none
+                        peer-checked/03:-translate-x-20
+                        peer-checked/03:scale-[83.75%]
+                        peer-checked/03:z-40
+                        peer-checked/04:-translate-x-40
+                        peer-checked/04:z-30
+                        peer-checked/05:-translate-x-40
+                        peer-checked/05:opacity-0
+                    ">
+                        <label class="absolute inset-0" for="article-02"><span class="sr-only">Focus on the big picture</span></label>
+                        <article class="bg-slate-800 p-6 rounded-lg shadow-2xl">
+                            <header class="mb-2">
+                                <img class="inline-flex rounded-full shadow mb-3" src="https://avatars.githubusercontent.com/u/116074810?v=4" width="44" height="44" alt="Icon">
+                                <h1 class="text-xl font-bold text-slate-300">Focus on the big picture</h1>
+                            </header>
+                            <div class="text-sm leading-relaxed text-slate-500 space-y-4 mb-2">
+                                <p>
+                                    Many desktop publishing packages and web page editors now use Pinky as their default model text, and a search for more variants will uncover many web sites still in their infancy.
+                                </p>
+                                <p>
+                                    All the generators tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                                </p>
+                            </div>
+                            <footer class="text-right">
+                                <a class="text-sm font-medium text-indigo-500 hover:underline" href="#0">Read more -&gt;</a>
+                            </footer>
+                        </article>
+                    </div>
+
+                    <div class="
+                        absolute inset-0 scale-[67.5%] z-20 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
+                        peer-focus-visible/03:[&amp;_article]:ring
+                        peer-focus-visible/03:[&amp;_article]:ring-indigo-300
+                        peer-checked/01:translate-x-40
+                        peer-checked/01:z-30
+                        peer-checked/02:translate-x-20
+                        peer-checked/02:scale-[83.75%]
+                        peer-checked/02:z-40
+                        peer-checked/03:relative
+                        peer-checked/03:z-50
+                        peer-checked/03:translate-x-0
+                        peer-checked/03:scale-100
+                        peer-checked/03:[&amp;>label]:pointer-events-none
+                        peer-checked/04:-translate-x-20
+                        peer-checked/04:scale-[83.75%]
+                        peer-checked/04:z-40
+                        peer-checked/05:-translate-x-40
+                        peer-checked/05:z-30
+                    ">
+                        <label class="absolute inset-0" for="article-03"><span class="sr-only">Focus on the big picture</span></label>
+                        <article class="bg-slate-800 p-6 rounded-lg shadow-2xl">
+                            <header class="mb-2">
+                                <img class="inline-flex rounded-full shadow mb-3" src="https://avatars.githubusercontent.com/u/116074810?v=4" width="44" height="44" alt="Icon">
+                                <h1 class="text-xl font-bold text-slate-300">Focus on the big picture</h1>
+                            </header>
+                            <div class="text-sm leading-relaxed text-slate-500 space-y-4 mb-2">
+                                <p>
+                                    Many desktop publishing packages and web page editors now use Pinky as their default model text, and a search for more variants will uncover many web sites still in their infancy.
+                                </p>
+                                <p>
+                                    All the generators tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                                </p>
+                            </div>
+                            <footer class="text-right">
+                                <a class="text-sm font-medium text-indigo-500 hover:underline" href="#0">Read more -&gt;</a>
+                            </footer>
+                        </article>
+                    </div>
+
+                    <div class="
+                        absolute inset-0 scale-[67.5%] z-20 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
+                        peer-focus-visible/04:[&amp;_article]:ring
+                        peer-focus-visible/04:[&amp;_article]:ring-indigo-300
+
+                        peer-checked/01:translate-x-40
+                        peer-checked/01:opacity-0
+
+                        peer-checked/02:translate-x-40
+                        peer-checked/02:z-30
+
+                        peer-checked/03:translate-x-20
+                        peer-checked/03:scale-[83.75%]
+                        peer-checked/03:z-40
+
+                        peer-checked/04:relative
+                        peer-checked/04:z-50
+                        peer-checked/04:translate-x-0
+                        peer-checked/04:scale-100
+                        peer-checked/04:[&amp;>label]:pointer-events-none
+
+                        peer-checked/05:-translate-x-20
+                        peer-checked/05:scale-[83.75%]
+                        peer-checked/05:z-40
+                    ">
+                        <label class="absolute inset-0" for="article-04"><span class="sr-only">Focus on the big picture</span></label>
+                        <article class="bg-slate-800 p-6 rounded-lg shadow-2xl">
+                            <header class="mb-2">
+                                <img class="inline-flex rounded-full shadow mb-3" src="https://avatars.githubusercontent.com/u/116074810?v=4" width="44" height="44" alt="Icon">
+                                <h1 class="text-xl font-bold text-slate-300">Focus on the big picture</h1>
+                            </header>
+                            <div class="text-sm leading-relaxed text-slate-500 space-y-4 mb-2">
+                                <p>
+                                    Many desktop publishing packages and web page editors now use Pinky as their default model text, and a search for more variants will uncover many web sites still in their infancy.
+                                </p>
+                                <p>
+                                    All the generators tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                                </p>
+                            </div>
+                            <footer class="text-right">
+                                <a class="text-sm font-medium text-indigo-500 hover:underline" href="#0">Read more -&gt;</a>
+                            </footer>
+                        </article>
+                    </div>
+
+                    <div class="
+                        absolute inset-0 scale-[67.5%] z-20 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
+                        peer-focus-visible/05:[&amp;_article]:ring
+                        peer-focus-visible/05:[&amp;_article]:ring-indigo-300
+                        peer-checked/01:translate-x-40
+                        peer-checked/02:translate-x-40
+                        peer-checked/02:opacity-0
+                        peer-checked/03:translate-x-40
+                        peer-checked/03:z-30
+                        peer-checked/04:translate-x-20
+                        peer-checked/04:scale-[83.75%]
+                        peer-checked/04:z-40
+                        peer-checked/05:relative
+                        peer-checked/05:z-50
+                        peer-checked/05:translate-x-0
+                        peer-checked/05:scale-100
+                        peer-checked/05:[&amp;>label]:pointer-events-none
+                    ">
+                        <label class="absolute inset-0" for="article-05"><span class="sr-only">Focus on the big picture</span></label>
+                        <article class="bg-slate-800 p-6 rounded-lg shadow-2xl">
+                            <header class="mb-2">
+                                <img class="inline-flex rounded-full shadow mb-3" src="https://avatars.githubusercontent.com/u/116074810?v=4" width="44" height="44" alt="Icon">
+                                <h1 class="text-xl font-bold text-slate-300">Focus on the big picture</h1>
+                            </header>
+                            <div class="text-sm leading-relaxed text-slate-500 space-y-4 mb-2">
+                                <p>
+                                    Many desktop publishing packages and web page editors now use Pinky as their default model text, and a search for more variants will uncover many web sites still in their infancy.
+                                </p>
+                                <p>
+                                    All the generators tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
+                                </p>
+                            </div>
+                            <footer class="text-right">
+                                <a class="text-sm font-medium text-indigo-500 hover:underline" href="#0">Read more -&gt;</a>
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+
+    </main>
+
+    <!-- Page footer -->
+    <footer class="absolute left-6 right-6 md:left-12 md:right-auto bottom-4 md:bottom-8 text-center md:text-left">
+        <a class="text-xs text-slate-500 hover:underline" href="#">©Sem;colon - YouTube Video Downloader</a>
+        <!-- Developed by Tariq Mehmood -->
+        <p class="text-xs text-slate-500">Developed by <a class="hover:underline" href="https://github.com/TariqMehmood1004" target="_blank" rel="noreferrer">Tariq Mehmood</a></p>
+    </footer>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+        document.getElementById('downloadForm').onsubmit = function(event) {
+            event.preventDefault();  // Prevent the default form submission
+            const loader = document.getElementById('loader');
+
+            loader.classList.remove('hidden');
+
+            const formData = new FormData(this);
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'  // Indicate an AJAX request
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Create a link to download the file
+                const disposition = response.headers.get('Content-Disposition');
+                const filename = disposition ? disposition.split('filename=')[1].replace(/"/g, '') : 'downloaded_video.mp4';
+
+                return response.blob().then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();  // Trigger the download
+                    window.URL.revokeObjectURL(url);  // Cleanup
+                    return filename;  // Return the filename for loader hiding
+                });
+            })
+            .then(filename => {
+                loader.classList.add('hidden');  // Hide the loader after download starts
+
+                // input value is cleared after download
+                document.getElementById('downloadForm').reset();
+
+                // Show a success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'p-4 absolute top-4 left-1/2 transform -translate-x-1/2 text-sm text-slate-100 bg-slate-800 rounded-lg shadow-lg w-3/4 max-w-xl text-center';
+                successMessage.textContent = 'Video downloaded successfully';
+                document.body.appendChild(successMessage);
+
+                // Hide the success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.remove();
+                }, 5000);
+
+                console.log(`File downloaded: ${filename}`);
+            })
+            .catch(error => {
+                loader.classList.add('hidden');
+
+                // Show an error message
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'p-4 absolute top-4 left-1/2 transform -translate-x-1/2 text-sm text-slate-100 bg-red-500 rounded-lg shadow-lg w-3/4 max-w-xl text-center';
+                errorMessage.textContent = 'Error downloading video' + error;
+                document.body.appendChild(errorMessage);
+
+                // Hide the error message after 5 seconds
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 5000);
+
+            });
+        };
+    </script>
+{% endblock %}
